@@ -15,7 +15,15 @@ try{
     });
     let avatar = "";
     if(req.file){
+            try {
+                avatar = await uploadToCloudinary(req.file.buffer);
+            } catch(e) {
+                console.warn("Avatar upload skipped:", e.message);
+            }
+            }
 
+            // to generate otp
+            const opt = generateOtp();
     }
 
     catch (error) {
