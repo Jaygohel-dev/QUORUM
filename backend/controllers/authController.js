@@ -2,7 +2,7 @@ import User from "../models/User";
 import Pool from "../models/Pool";
 import Comment from "../models/Comment";
 
-// to reegster a user and send otp to emils...
+// to register a user and send otp to email...
 
 try{
     const { name, email, username, password } = req.body;
@@ -30,4 +30,3 @@ try{
 
     }
     
-}
