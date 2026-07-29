@@ -1,6 +1,9 @@
 import User from "../models/User";
 import Pool from "../models/Pool";
 import Comment from "../models/Comment";
+import { generateOtp, otpExpiry } from "../utils/otpGenerator";
+import { uploadToCloudinary } from "../utils/cloudinary";
+
 
 // to register a user and send otp to email...
 
@@ -24,6 +27,12 @@ try{
 
             // to generate otp
             const opt = generateOtp();
+            await Userr.create({
+                name, email, username, password, avatar, otp, otpExpires: otpExpiry()
+            });
+
+            //to send otp
+            
     }
 
     catch (error) {
