@@ -1,10 +1,10 @@
-import User from "../models/User";
-import { sendOtpEmail } from "../utils/emailSender";
-import { generateOtp, otpExpiry } from "../utils/otpGenerator";
+import User from "../models/User.js";
+import { sendOtpEmail } from "../utils/emailSender.js";
+import { generateOtp, otpExpiry } from "../utils/otpGenerator.js";
 
 // if user forgoots passwords send an otp mail
 
-export const forgotPasswrod = async (res, res) => {
+export const forgotPassword = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) return res.status(404).json({
@@ -70,7 +70,7 @@ export const resetPassword = async (req, res) => {
         user.password = password;
         user.otp = undefined;
         user.otpExpires = undefined;
-        userisVerified = true;
+        user.isVerified = true; // Mark user as verified after password reset
         await user.save();
         res.json({ message: " password reset successfully" });
     }

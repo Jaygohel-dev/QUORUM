@@ -3,6 +3,7 @@ import cors from "cors";
 import 'dotenv/config.js';
 import { connect } from "mongoose";
 import { connectDB } from "./config/db.js";
+import authRouter from "./routes/authRoutes.js";
 
 const PORT = 5000;
 const app = express();
@@ -15,6 +16,8 @@ app.use(express.json());
 await connectDB();
 
 // Routes
+app.use("/api/auth", authRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });

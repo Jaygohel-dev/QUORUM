@@ -1,11 +1,9 @@
 import jwt from "jsonwebtoken";
-import User from "../models/User";
-import Pool from "../models/Pool";
-import Comment from "../models/Comment";
-import { generateOtp, otpExpiry } from "../utils/otpGenerator";
-import { uploadToCloudinary } from "../utils/cloudinary";
-import { sendOtpEmail } from "../utils/emailService";
-import { otpValid } from "../utils/otpValidator";
+import User from "../models/User.js";
+import Pool from "../models/Pool.js";
+import Comment from "../models/Comment.js";
+import { generateOtp, otpExpiry, otpValid, sendOtpEmail } from "../utils/otp.js"; 
+import { uploadToCloudinary } from "../config/cloudinary.js";
 
 const makeToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
