@@ -51,10 +51,9 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // to hash the password before saving the user document
-userSchema.pre("save", async function(next) {
-    if(!this.isModified("password")) return next();
+userSchema.pre("save", async function() {
+    if(!this.isModified("password")) return ;
     this.password = await bcrypt.hash(this.password, 10);
-    next();
 })
 
 // to compare the user password with the saved passsword

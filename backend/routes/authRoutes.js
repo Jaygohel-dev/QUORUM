@@ -1,14 +1,14 @@
 import express from 'express';
 import { upload } from '../config/cloudinary.js';
-import { login, register, resendOtp, verifyOtp } from '../controllers/authController.js';
-import { forgotPassword } from '../controllers/passwordController.js';
+import { login, register, resendOtp, verifyOtp, getMe, updateProfile, changePassword, deleteAccount } from '../controllers/authController.js';
+import { forgotPassword, verifyResetOtp, resetPassword } from '../controllers/passwordController.js';
 import { protect } from '../middleware/auth.js';
+
 const authRouter = express.Router();
 
 authRouter.post('/register', upload.single("image"), register);
 authRouter.post('/verify-otp', verifyOtp);
-authRouter.post('resend-otp', resendOtp);
-
+authRouter.post('/resend-otp', resendOtp); // Added the missing slash
 authRouter.post('/login', login);
 authRouter.post('/forgot-password', forgotPassword);
 authRouter.post('/verify-resend-otp', verifyResetOtp);
