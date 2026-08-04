@@ -24,7 +24,7 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
 
     const exists = await User.findOne({ $or: [{ email }, { username }] });
-    if (exists) return res.status(400).json({ message: "User already exists" });
+    if (exists) return res.status(400).json({ message: "User already exists..!" });
 
     let avatar = "";
     if (req.file) {
@@ -65,7 +65,7 @@ export const verifyOtp = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     if (!user.isVerified && !otpValid(user, otp))
-      return res.status(400).json({ message: "invalid or expired otp" });
+      return res.status(400).json({ message: "invalid or expired otp.!" });
 
     user.isVerified = true;
     user.otp = undefined;
