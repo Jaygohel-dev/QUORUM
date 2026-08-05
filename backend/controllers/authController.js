@@ -46,7 +46,7 @@ export const register = async (req, res) => {
       otpExpires: otpExpiry(),
     });
 
-    await sendOtpEmail(email, otp, "verify your email please...");
+    await sendOtpEmail(email, otp, "verify your email please.!");
     res.status(201).json({
       needsVerification: true,
       email,
@@ -62,10 +62,10 @@ export const verifyOtp = async (req, res) => {
     const { email, otp } = req.body;
     const user = await User.findOne({ email }); // Fixed: Added lookup
 
-    if (!user) return res.status(404).json({ message: "User not found.!" });
+    if (!user) return res.status(404).json({ message: "User not found!" });
 
     if (!user.isVerified && !otpValid(user, otp))
-      return res.status(400).json({ message: "invalid or expired otp.!" });
+      return res.status(400).json({ message: "invalid or expired otp!" });
 
     user.isVerified = true;
     user.otp = undefined;
