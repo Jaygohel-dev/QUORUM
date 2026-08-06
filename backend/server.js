@@ -19,7 +19,7 @@ await connectDB();
 app.use("/api/auth", authRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World...How are you!");
 });
 
 app.listen(PORT, () => {

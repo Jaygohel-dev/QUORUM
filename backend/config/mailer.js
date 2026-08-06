@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 // to send mail
 
-export const sendOtpEmail = async (to, otp, reason = "verify your email") => {
+export const sendOtpEmail = async (to, otp, reason = "verify your email.") => {
     await transporter.sendMail({
             from: `"Pollify" <${process.env.EMAIL_FROM || process.env.SMTP_USER}>`,
     to,
